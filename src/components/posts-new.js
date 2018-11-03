@@ -5,6 +5,8 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 //reduxForm, connecte benzer iş yapıyor.
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { createPost } from "../actions/";
 class PostsNew extends Component {
   /*has-danger: inputu kırmızı yapar
 text-help: yazıyı kırmızı yapar*/
@@ -30,7 +32,7 @@ text-help: yazıyı kırmızı yapar*/
   }
 
   onSubmit(values) {
-    console.log(values);
+    this.props.createPost(values);
   }
   render() {
     const { handleSubmit } = this.props;
@@ -100,4 +102,9 @@ export default reduxForm({
   //PostsNewForm bu sayfadaki form. Tek
   //sayfada birden fazla form olabilir,
   //ve bu form ismi unique olmalı.
-})(PostsNew);
+})(
+  connect(
+    null,
+    { createPost }
+  )(PostsNew)
+);
