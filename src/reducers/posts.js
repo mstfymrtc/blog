@@ -4,7 +4,7 @@ export default function(state = {}, action) {
   switch (action.type) {
     case FETCH_POSTS:
       // console.log(action.payload.data); //[POST1,POST2]
-      // // {4:POST}
+      // // {4:POST1,5:POST2}
       return _.mapKeys(action.payload.data, "id");
     default:
       return state;
