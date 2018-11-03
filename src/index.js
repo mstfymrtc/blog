@@ -6,6 +6,7 @@ import reducers from "./reducers";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import PostsIndex from "./components/posts-index";
 import PostsNew from "./components/posts-new";
+import PostsShow from "./components/posts-show";
 
 import ReduxPromise from "redux-promise";
 
@@ -18,6 +19,7 @@ ReactDOM.render(
         <Switch>
           {/* //TODO:most specific routes higher! */}
           <Route path="/posts/new" component={PostsNew} />
+          <Route path="/posts/:id" component={PostsShow} />
           <Route path="/" component={PostsIndex} />
           {/* <Route path="/posts" component={PostsIndex} /> */}
           {/* bir üst satırdaki gibi olsaydı da yine react-router sorunlu çalışacaktı.
