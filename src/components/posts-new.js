@@ -4,7 +4,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 //reduxForm, connecte benzer iş yapıyor.
-
+import { Link } from "react-router-dom";
 class PostsNew extends Component {
   /*has-danger: inputu kırmızı yapar
 text-help: yazıyı kırmızı yapar*/
@@ -60,6 +60,10 @@ text-help: yazıyı kırmızı yapar*/
         <button type="submit" className="btn btn-primary">
           Save
         </button>
+        {/* //link, <a tag olarak render edilir. */}
+        <Link to="/" className="btn btn-danger">
+          Cancel
+        </Link>
       </form>
     );
   }
