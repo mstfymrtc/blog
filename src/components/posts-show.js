@@ -1,8 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchPost } from "../actions";
+import { Link } from "react-router-dom";
 class PostsShow extends Component {
   componentDidMount() {
+    //----------------------------------------------------------------
+    //TODO:EĞER NETWORKDAN VERİ ÇEKMEYİ AZALTMAK İSTİYORSAK
+    //AŞAĞIDAKİ GİBİ İSTEDİĞİĞİMİZ POST, STATE'DE VARSA REFETCH 'YAPMA!'
+    //KONTROLÜ YAPABİLİRDİK.
+
+    //FAKAT BÖYLE YAPINCA DA ŞÖYLE BİR PROBLEM ORTAYA ÇIKIYOR.
+    //BELKİ O SAYFA 10 GÜNDÜR YENİLENMEDİ?
+
+    // if (!this.props.post) {
+    //   const { id } = this.props.match.params; //react routerdan gelen id (paramsdan)
+    //   this.props.fetchPost(id);
+    // }
+
+    //----------------------------------------------------------------
+
     const { id } = this.props.match.params; //react routerdan gelen id (paramsdan)
     this.props.fetchPost(id);
   }
@@ -19,6 +35,9 @@ class PostsShow extends Component {
 
     return (
       <div>
+        <Link className="btn btn-secondary" to="/">
+          Go Back
+        </Link>
         <h3>{post.title}</h3>
         <h6>Categories: {post.categories}</h6>
         <p>{post.content}</p>

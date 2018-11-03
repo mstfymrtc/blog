@@ -14,11 +14,12 @@ class PostsIndex extends Component {
     //bununla normal map e ek olarak obje içinde de
     //iterate edebiliyoruz
     return _.map(this.props.posts, post => (
-      <li key={post.id} className="list-group-item">
-        {post.title}
-      </li>
+      <Link key={post.id} to={`/posts/${post.id}`}>
+        <li className="list-group-item">{post.title}</li>
+      </Link>
     ));
   }
+
   render() {
     console.log(this.props.posts);
     return (
