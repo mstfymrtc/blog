@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchPost } from "../actions";
+import { fetchPost, deletePost } from "../actions";
 import { Link } from "react-router-dom";
 class PostsShow extends Component {
   componentDidMount() {
@@ -22,6 +22,18 @@ class PostsShow extends Component {
     const { id } = this.props.match.params; //react routerdan gelen id (paramsdan)
     this.props.fetchPost(id);
   }
+
+  onDeleteClick() {
+    const { id } = this.props.match.params;
+    this.props.deletePost(id, () => this.props.history.push("/"));
+
+    //----------------------------------------------------------------
+    // this.props.deletePost(this.props.post.id);
+    //böyle yapınca postu çoktan çektiğimizi varsayıyoruz.
+    //fakat hala fetch devam ederken bu component render ediliyor.
+    //bu baya riskli bi yol.
+    //----------------------------------------------------------------
+  }
   render() {
     const { post } = this.props;
 
@@ -38,6 +50,12 @@ class PostsShow extends Component {
         <Link className="btn btn-secondary" to="/">
           Go Back
         </Link>
+        <button
+          onClick={this.onDeleteClick.bind(this)}
+          className="btn btn-danger pull-xs-right"
+        >
+          Delete Post
+        </button>
         <h3>{post.title}</h3>
         <h6>Categories: {post.categories}</h6>
         <p>{post.content}</p>
@@ -57,5 +75,5 @@ function mapStateToProps({ posts }, ownProps) {
 }
 export default connect(
   mapStateToProps,
-  { fetchPost }
+  { fetchPost, deletePost }
 )(PostsShow);
