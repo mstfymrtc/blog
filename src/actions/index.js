@@ -35,6 +35,17 @@ export function fetchPost(id) {
 }
 
 export function deletePost(id, callback) {
+  //önce postShow fonksiyonunda adam delete'a basıyor.
+  //sonra buraya geliyoruz callback ile.
+  //axios satırı çalışıyor, ve request başlıyor.
+  //o tamamlanana kadar state güncelleniyor (object stateden
+  //siliniyor) ve component
+  // state güncellendiği için re-render ediliyor.
+  //fakat ortada obje olmadığı için Loading... yazıyor.
+
+  //Bu esnada loading... yazarken alttaki request'ten success dönüyor ve
+  //index'e navigate oluyoruz. önemli bunlar! ;)
+
   axios.delete(`${ROOT_URL}/posts/${id}${API_KEY}`).then(() => callback());
   return {
     type: DELETE_POST,
