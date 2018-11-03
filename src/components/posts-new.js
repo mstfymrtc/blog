@@ -32,7 +32,11 @@ text-help: yazıyı kırmızı yapar*/
   }
 
   onSubmit(values) {
-    this.props.createPost(values);
+    //TODO: BURASI ÇOK ÖNEMLİ! POST İSTEĞİ 201 OLARAK GELİRSE
+    //NAVIGATE EDECEĞİZ. BUNUN İÇİN CALLBACK KULLANIYORUZ.
+    //ACTIONA HISTORY.PUSH FONKSOYNUNU GÖNDERİYORUZ.
+    //EĞER İSTEK BAŞARILIYSA, ACTION, BU FONKSIYONU ÇALIŞTIRACAK.
+    this.props.createPost(values, () => this.props.history.push("/"));
   }
   render() {
     const { handleSubmit } = this.props;
