@@ -1,7 +1,11 @@
-import { FETCH_POSTS, FETCH_POST } from "../actions/index";
+import { FETCH_POSTS, FETCH_POST, DELETE_POST } from "../actions/index";
 import _ from "lodash";
 export default function(state = {}, action) {
   switch (action.type) {
+    case DELETE_POST:
+      return _.omit(state, action.payload);
+    // omit: look at the state object, if the state object has the key 'id',
+    // delete that object.
     case FETCH_POST:
       /*ES5 ES5 ES5 ES5 ES5 ES5 ES5 ES5 ES5 ES5 ES5 */
       // const post = action.payload.data;
